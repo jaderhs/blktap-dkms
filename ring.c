@@ -231,6 +231,9 @@ blktap_ring_unmap_request(struct blktap *tap,
 	addr  = MMAP_VADDR(ring->user_vstart, request->usr_idx, 0);
 	len   = request->nr_pages << PAGE_SHIFT;
 
+	if(!current->mm)
+		return;
+
 	err = vm_munmap(addr, len);
 	WARN_ON_ONCE(err);
 }
