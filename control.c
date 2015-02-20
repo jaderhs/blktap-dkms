@@ -79,7 +79,6 @@ out:
 	return tap;
 
 fail:
-	mutex_unlock(&blktap_lock);
 	kfree(tap);
 	tap = NULL;
 	goto out;
